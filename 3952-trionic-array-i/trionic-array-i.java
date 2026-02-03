@@ -13,7 +13,6 @@ class Solution {
         while (i < len && nums[i] > nums[i - 1]) {
             i++;
         }
-        System.out.println(p+" "+q+" "+i);
         if(p==0 || p==-1 || p==q || q==-1 || q==len-1 || i!=len){
             return false;
         }
