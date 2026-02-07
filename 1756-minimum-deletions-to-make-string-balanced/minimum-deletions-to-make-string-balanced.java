@@ -26,7 +26,7 @@ class Solution {
 
     public int minimumDeletions(String s) {
         int len = s.length();
-        int[][] dp = new int[len + 1][3];
+        int[][] dp = new int[len][3];
         for (int[] arr : dp) {
             Arrays.fill(arr, -1);
         }
