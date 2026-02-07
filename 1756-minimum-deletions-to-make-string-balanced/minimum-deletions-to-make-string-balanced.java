@@ -1,34 +1,24 @@
 class Solution {
-    public int rec(String s, int prev, int[][] dp, int idx) {
-        if (idx == s.length()) {
-            return 0;
-        }
-        if (dp[idx][prev] != -1) {
-            return dp[idx][prev];
-        }
-
-        char ch = s.charAt(idx);
-        int take = Integer.MAX_VALUE;
-        int notTake = Integer.MAX_VALUE;
-        if (prev == 0) {
-            take = rec(s, ch == 'a' ? 1 : 2, dp, idx + 1);
-        } else {
-            char p = prev == 1 ? 'a' : 'b';
-            if (p == ch || (ch == 'b' || p == 'a')) {
-                take = rec(s, ch == 'a' ? 1 : 2, dp, idx + 1);
-            }
-        }
-        notTake = rec(s, prev, dp, idx + 1) + 1;
-        return dp[idx][prev] = Math.min(take, notTake);
-
-    }
-
     public int minimumDeletions(String s) {
         int len = s.length();
-        int[][] dp = new int[len][3];
-        for (int[] arr : dp) {
-            Arrays.fill(arr, -1);
+        int[][] dp = new int[len+1][3];
+        for (int idx = len-1; idx >= 0; idx--) {
+            char ch = s.charAt(idx);
+            for (int prev = 0; prev <= 2; prev++) {
+                int notTake = 1 + dp[idx+1][prev];
+
+                int take = Integer.MAX_VALUE;
+                if(prev == 0){
+                    take = dp[idx+1][ch=='a'?1:2];
+                }else{
+                    char p = prev==1 ? 'a':'b';
+                    if(!(p=='b' && ch=='a')){
+                        take = dp[idx+1][ch=='a'?1:2];
+                    }
+                }
+                dp[idx][prev] = Math.min(take,notTake);
+            }
         }
-        return rec(s, 0, dp, 0);
+        return dp[0][0];
     }
 }
