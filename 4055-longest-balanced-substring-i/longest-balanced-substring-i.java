@@ -4,24 +4,19 @@ class Solution {
         int max = 1;
         int[] f;
         for (int i = 0; i < len; i++) {
-            char c = s.charAt(i);
-            StringBuilder sb = new StringBuilder();
             f = new int[26];
-            f[c - 'a'] += 1;
-            sb.append(c);
+            f[s.charAt(i)- 'a'] += 1;
             for (int j = i + 1; j < len; j++) {
-                char ch = s.charAt(j);
-                f[ch - 'a'] += 1;
-                sb.append(ch);
-                if (isBalanced(sb,f)) {
-                    max = Math.max(sb.length(), max);
+                f[s.charAt(j) - 'a'] += 1;
+                if (isBalanced(f)) {
+                    max = Math.max(j - i + 1, max);
                 }
             }
         }
         return max;
     }
 
-    public boolean isBalanced(StringBuilder s,int[] f) {
+    public boolean isBalanced(int[] f) {
         int i = 0, j = 25;
         while (i < j) {
             if ((f[i] != 0 && f[j] != 0) && f[i] != f[j]) {
