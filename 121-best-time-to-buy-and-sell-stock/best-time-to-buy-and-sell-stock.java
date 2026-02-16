@@ -1,20 +1,20 @@
 class Solution {
     public int maxProfit(int[] prices) {
         Stack<Integer> st = new Stack<>();
-        int max = 0;
-        for (int i = prices.length - 1; i >= 0; i--) {
+        int profit = 0;
+        for(int i=prices.length-1;i>=0;i--){
             int currPrice = prices[i];
-            if (st.isEmpty()) {
+            if(st.isEmpty()){
                 st.push(currPrice);
-            } else {
+            }else{
                 int peek = st.peek();
-                if (peek > currPrice) {
-                    max = Math.max(peek - currPrice, max);
-                } else {
+                if(peek > currPrice){
+                    profit = Math.max(profit,peek-currPrice);
+                }else{
                     st.push(currPrice);
                 }
             }
         }
-        return max;
+        return profit;
     }
 }
