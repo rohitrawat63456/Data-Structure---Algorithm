@@ -1,23 +1,24 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        int len = digits.length;
-        int i = len - 1;
-        while (i >= 0 && digits[i] == 9) {
-            digits[i] = 0;
-            i--;
-        }
-        int arr[] = new int[i < 0 ? len + 1 : len];
-        if (i < 0) {
-            arr[0] = 1;
-        } else {
-            digits[i] += 1;
-        }
-        for (int j = 0; j < len; j++) {
-            if (i < 0) {
-                arr[j + 1] = digits[j];
+        ArrayList<Integer> list = new ArrayList<>();
+        int c = 0; // carry
+        for (int i = digits.length - 1; i >= 0; i--) {
+            int sum;
+            if (i == digits.length - 1) {
+                sum = digits[i] + c + 1;
             } else {
-                arr[j] = digits[j];
+                sum = digits[i] + c;
             }
+            list.add(sum % 10);
+            c = sum > 9 ? 1 : 0;
+        }
+        if (c != 0) {
+            list.add(c);
+        }
+        int[] arr = new int[list.size()];
+        int len = list.size();
+        for (int i = len - 1; i >= 0; i--) {
+            arr[len - i - 1] = list.get(i);
         }
         return arr;
     }
