@@ -3,19 +3,14 @@ class NumArray {
 
     public NumArray(int[] nums) {
         this.nums = nums;
+        calcPrefixSum();
+    }
+
+    private void calcPrefixSum() {
         for (int i = 1; i < nums.length; i++) {
             nums[i] = nums[i - 1] + nums[i];
         }
     }
-
-    // public void calcPrefixSum() {
-    //     //prefix[0] = nums[0];
-    //     for (int i = 1; i < nums.length; i++) {
-    //         nums[i] = nums[i - 1] + nums[i];
-    //     }
-    //     System.out.println(Arrays.toString(arr));
-    //     //return prefix;
-    // }
 
     public int sumRange(int left, int right) {
         int prev = left == 0 ? 0 : nums[left - 1];
