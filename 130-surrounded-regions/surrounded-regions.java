@@ -11,6 +11,8 @@ class Solution {
                     int[] arr = stack.pop();
                     int r = arr[0];
                     int c = arr[1];
+                    if(visited[r][c])
+                    continue;
                     board[r][c] = '1';
                     if (r - 1 >= 0 && board[r - 1][c] == 'O') {
                         stack.push(new int[] { r - 1, c });
@@ -35,6 +37,8 @@ class Solution {
                     int[] arr = stack.pop();
                     int r = arr[0];
                     int c = arr[1];
+                    if(visited[r][c])
+                    continue;
                     board[r][c] = '1';
                     if (r - 1 >= 0 && board[r - 1][c] == 'O') {
                         stack.push(new int[] { r - 1, c });
@@ -59,6 +63,8 @@ class Solution {
                     int[] arr = stack.pop();
                     int r = arr[0];
                     int c = arr[1];
+                    if(visited[r][c])
+                    continue;
                     board[r][c] = '1';
                     if (r - 1 >= 0 && board[r - 1][c] == 'O') {
                         stack.push(new int[] { r - 1, c });
@@ -83,6 +89,8 @@ class Solution {
                     int[] arr = stack.pop();
                     int r = arr[0];
                     int c = arr[1];
+                    if(visited[r][c])
+                    continue;
                     board[r][c] = '1';
                     if (r - 1 >= 0 && board[r - 1][c] == 'O') {
                         stack.push(new int[] { r - 1, c });
