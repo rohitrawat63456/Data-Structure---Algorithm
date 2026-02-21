@@ -3,16 +3,15 @@ class Solution {
         Stack<int[]> stack = new Stack<>();
         int row = board.length;
         int col = board[0].length;
-        boolean[][] visited = new boolean[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if ((i == 0 || i == row - 1 || j == 0 || j == col - 1) && board[i][j] == 'O' && !visited[i][j]) {
+                if ((i == 0 || i == row - 1 || j == 0 || j == col - 1) && board[i][j] == 'O') {
                     stack.push(new int[] { i, j });
                     while (!stack.isEmpty()) {
                         int[] arr = stack.pop();
                         int r = arr[0];
                         int c = arr[1];
-                        if (visited[r][c])
+                        if (board[r][c] == '1')
                             continue;
                         board[r][c] = '1';
                         if (r - 1 >= 0 && board[r - 1][c] == 'O') {
@@ -27,7 +26,6 @@ class Solution {
                         if (c + 1 < col && board[r][c + 1] == 'O') {
                             stack.push(new int[] { r, c + 1 });
                         }
-                        visited[r][c] = true;
                     }
                 }
             }
