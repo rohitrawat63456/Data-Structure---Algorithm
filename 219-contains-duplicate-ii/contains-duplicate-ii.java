@@ -7,7 +7,7 @@ class Solution {
                 map.remove(nums[left]);
                 left++;
             }
-            if(map.containsKey(nums[right]) && right - map.get(nums[right])<=k){
+            if(map.containsKey(nums[right])){
                 return true;
             }
             map.put(nums[right],right);
